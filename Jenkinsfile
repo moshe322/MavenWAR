@@ -8,8 +8,10 @@ node{
     bat "${mvnHome}/bin/mvn clean package"
   }
   stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarqubeScanner';
-    bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
+    //def scannerHome = tool 'SonarqubeScanner';
+    def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
+    //bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
+    bat "${mvnHome}/bin/mvn sonar:sonar"
   }
   stage('Publish to Nexus'){
     //Create Package ID
