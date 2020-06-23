@@ -15,11 +15,16 @@
 
 	<properties>
 		<java.version>8</java.version>
-
-    		<sonar.host.url>localhost:4950</sonar.host.url>
-    		<sonar.log.level>DEBUG</sonar.log.level>
-    		<sonar.verbose>true</sonar.verbose>
-    		<sonar.coverage.exclusions>**/*.js</sonar.coverage.exclusions>
+		
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>http://localhost:9000</sonar.host.url>
+			</properties>
+		</profile>
 	</properties>	
 	
 	<dependencies>
@@ -148,18 +153,6 @@
 
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<id>sonar</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<!-- Optional URL to server. Default value is http://localhost:9000 -->
-				<sonar.host.url>http://localhost:9000</sonar.host.url>
-			</properties>
-		</profile>
-	</profiles>
 
 	<build>
 		<plugins>
