@@ -9,7 +9,7 @@ node{
   }
   stage('SonarQube analysis') {
     def scannerHome = tool 'SonarqubeScanner';
-    bat "cd ${scannerHome}\bin\"
+    bat "cd ${scannerHome}/bin"
     bat "sonar-scanner.bat"
   }
   stage('Publish to Nexus'){
