@@ -18,6 +18,7 @@ node{
       timeout(time: 10, unit: 'MINUTES') {
         waitForQualityGate abortPipeline: true
       }
+    }
   }
   stage('Publish to Nexus'){
     //Create Package ID
