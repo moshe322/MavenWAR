@@ -20,6 +20,8 @@ import java.util.stream.Stream;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -38,7 +40,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Oliver Drotbohm
  */
 @SpringBootApplication
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
 	/**
 	 * The main application method, bootstraps the Spring container.
@@ -49,6 +51,11 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	 @Override
+	 protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+	     return builder.sources(Application.class);
+	 }
+	
 	/**
 	 * Some initializing code to populate our database with some {@link GuestbookEntry}s. Beans of type
 	 * {@link CommandLineRunner} will be executed on application startup which makes them a convenient way to run

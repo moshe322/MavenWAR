@@ -26,7 +26,7 @@ node{
     bat "echo ${packageid}"
    
     //Publish package to Nexus Server
-    nexusPublisher nexusInstanceId: 'JavaRelease', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '\\target\\guestbook-1.2.0-SNAPSHOT.war']], mavenCoordinate: [artifactId: 'guestbook', groupId: 'de.tudresden.inf.st', packaging: 'war', version: packageid]]]
+    nexusPublisher nexusInstanceId: 'JavaRelease', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '\\target\\guestbook-1.2.0.war']], mavenCoordinate: [artifactId: 'guestbook', groupId: 'devops', packaging: 'war', version: packageid]]]
   }
   /*stage('Deplot to Tomcat'){
     //Run CURL script
