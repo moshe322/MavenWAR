@@ -19,6 +19,12 @@
 	
 	<dependencies>
 
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.7.0</version>
+		</dependency>	
+		
 		<!-- Persistence -->
 
 		<dependency>
@@ -134,12 +140,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.sonarsource.scanner.maven</groupId>
-			<artifactId>sonar-maven-plugin</artifactId>
-			<version>3.7.0</version>
-		</dependency>		
 
 	</dependencies>
 
