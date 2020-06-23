@@ -7,12 +7,12 @@ node{
     def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
     bat "${mvnHome}/bin/mvn package"
   }
-  stage('SonarQube analysis'){
+  /*stage('SonarQube analysis'){
     def scannerHome = tool 'SonarScanner';
     withSonarQubeEnv('Sonar1') {
       sh "${scannerHome}/bin/sonar-scanner"
     }
-  }
+  }*/
   stage('Publish to Nexus'){
     //Create Package ID
     def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
@@ -28,8 +28,8 @@ node{
     //Publish package to Nexus Server
     nexusPublisher nexusInstanceId: 'JavaRelease', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '\\target\\jb-hello-world-maven-0.1.0.jar']], mavenCoordinate: [artifactId: 'jb-hello-world-maven', groupId: 'org.springframework', packaging: 'jar', version: packageid]]]
   }
-  stage('Deplot to Tomcat'){
+  /*stage('Deplot to Tomcat'){
     //Run CURL script
     curl -v -u admin:admin -T /../my_app.war 'http://127.0.0.1:8085/manager/text/deploy?path=/my_app&update=true'
-  }
+  }*/
 }
