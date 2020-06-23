@@ -11,14 +11,9 @@ node{
     environment {
       scannerHome = tool 'SonarqubeScanner'
     }
-    steps {
       withSonarQubeEnv('sonarqube') {
         bat "${scannerHome}/bin/sonar-scanner"
       }
-      timeout(time: 10, unit: 'MINUTES') {
-        waitForQualityGate abortPipeline: true
-      }
-    }
   }
   stage('Publish to Nexus'){
     //Create Package ID
