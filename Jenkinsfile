@@ -5,13 +5,16 @@ node{
   stage('Compile Package'){
     //Get Maven Home path
     def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
-    bat "${mvnHome}/bin/mvn package"
+    bat "${mvnHome}/bin/mvn clean package"
   }
   stage('SonarQube analysis'){
-    def scannerHome = tool 'SonarScanner';
-    withSonarQubeEnv('Sonar1') {
-      sh "${scannerHome}/bin/sonar-scanner"
+    environment {
+      scannerHome = tool 'SonarqubeScanner'
     }
+    steps {
+      withSonarQubeEnv('sonarqube'){
+        bat "${scannerHome}/bin/sonar-scanner"
+      }
   }
   stage('Publish to Nexus'){
     //Create Package ID
