@@ -9,7 +9,7 @@ node{
   }
   stage('SonarQube analysis') {
     def scannerHome = tool 'SonarqubeScanner'
-    sh "${scannerHome}/bin/sonar-scanner.bat"
+    bat "${scannerHome}/bin/sonar-scanner.bat"
   }
   stage('Publish to Nexus'){
     //Create Package ID
