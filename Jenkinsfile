@@ -8,12 +8,8 @@ node{
     bat "${mvnHome}/bin/mvn clean package"
   }
   stage('SonarQube analysis') {
-    environment {
-      scannerHome = tool 'SonarqubeScanner'
-    }
-      withSonarQubeEnv('sonarqube') {
-        bat "${scannerHome}/bin/sonar-scanner"
-      }
+    def scannerHome = tool 'SonarqubeScanner'
+    bat "${scannerHome}/bin/sonar-scanner"
   }
   stage('Publish to Nexus'){
     //Create Package ID
