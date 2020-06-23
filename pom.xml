@@ -15,9 +15,7 @@
 
 	<properties>
 		<java.version>8</java.version>
-	</properties>
 
-	<properties>
     		<sonar.host.url>localhost:4950</sonar.host.url>
     		<sonar.log.level>DEBUG</sonar.log.level>
     		<sonar.verbose>true</sonar.verbose>
