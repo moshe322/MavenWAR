@@ -7,13 +7,16 @@ node{
     def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
     bat "${mvnHome}/bin/mvn clean package"
   }
-  stage('SonarQube analysis'){
+  stage('SonarQube analysis') {
     environment {
       scannerHome = tool 'SonarqubeScanner'
     }
     steps {
-      withSonarQubeEnv('sonarqube'){
+      withSonarQubeEnv('sonarqube') {
         bat "${scannerHome}/bin/sonar-scanner"
+      }
+      timeout(time: 10, unit: 'MINUTES') {
+        waitForQualityGate abortPipeline: true
       }
   }
   stage('Publish to Nexus'){
