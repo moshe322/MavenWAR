@@ -1,7 +1,13 @@
-FROM tomcat:jdk14-openjdk-oracle
+FROM ubuntu:latest
 
 EXPOSE 8080
 
-COPY ./target/guestbook-1.2.0.war /usr/local/tomcat/webapps/guestbook.war
+COPY MavenWAR /usr/local/tomcat/webapps
+
+WORKDIR /usr/local/tomcat/webapps
+
+RUN apt install maven -y
+
+RUN mvn clean install
 
 CMD ["catalina.sh", "run"]
