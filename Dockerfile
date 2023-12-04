@@ -22,8 +22,7 @@ RUN apt-get update && \
 COPY . .
 
 # Build your Maven project and deploy the WAR file to Tomcat
-RUN mvn clean install && \
-    cp target/your-app.war /usr/local/tomcat/webapps/
+RUN mvn clean install
 
 # Start Tomcat
 CMD ["catalina.sh", "run"]
