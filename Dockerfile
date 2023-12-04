@@ -5,18 +5,13 @@ FROM tomcat:9.0-jdk11
 WORKDIR /app
 
 # Download and install Maven
-ENV MAVEN_VERSION 3.8.4
+ENV MAVEN_VERSION 3.9.6
 ENV MAVEN_HOME /usr/share/maven
-ENV PATH $MAVEN_HOME/bin:$PATH
 
 RUN apt-get update && \
     apt-get install -y wget && \
     wget -q "https://downloads.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
-    tar -xzf "apache-maven-$MAVEN_VERSION-bin.tar.gz" -C /usr/share && \
-    ln -s "/usr/share/apache-maven-$MAVEN_VERSION/bin/mvn" /usr/bin/mvn && \
-    rm "apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    tar xzvf apache-maven-3.9.6-bin.tar.gz
 
 # Your Maven project files are copied into the container
 COPY . .
